@@ -10,9 +10,11 @@ Integer[] values;
 Random random;
 int maxValue;
 public static final int LINE_WIDTH=1;
+public static final int ANIMATION_DURATION=10;
 int numValues;
 int height;
 int width;
+
 	
    public SortingPanel(int width,int height) 
  {
@@ -24,12 +26,12 @@ int width;
 	  System.out.println("numvalues="+numValues);
 	  values=new Integer[numValues];
 	  random=new Random();
-	  populateArray();
+	  populatevaluesay();
 	  
 	  
  }
    
- public void populateArray()
+ public void populatevaluesay()
  {
 	for(int i=0;i<values.length;i++)
 	{
@@ -38,29 +40,19 @@ int width;
 	}
  }
  
- public void swap()
+ public void swap(int i,int j)
  {
-	 int temp;
-	 for(int i=0;i<values.length-1;i++)
-	 {
-		 for (int j = 0; j < values.length - i - 1; j++) {
-		        if (values[j] > values[j+1]) /* For descending order use < */
-		        {
-		          temp       = values[j];
-		          values[j]   = values[j+1];
-		          values[j+1] = temp;
-		          try {
-					Thread.sleep(5);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		        repaint();  
-		        }
-		      } 
-		
-	 }
-		
+		int temp;
+		temp=values[i];
+		values[i]=values[j];
+		values[j]=temp;
+		try {
+			Thread.sleep(ANIMATION_DURATION);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		repaint();
  }
  
  
@@ -81,10 +73,77 @@ int width;
 		y2=i;
 		}
 		
-		
-		
-		
 		}
+ 
+ public  void bubbleSort()
+ {
+     int n = values.length;
+     int k;
+     for (int m = n; m >= 0; m--) 
+     {
+         for (int i = 0; i < n - 1; i++) 
+         {
+             k = i + 1;
+             if (values[i] > values[k]) 
+             {
+                 swap(i, k);
+             }
+         }
+     }
+ }
+ 
+ 
+ 
+ public void quickSort() {
+     
+     if (values == null || values.length == 0) {
+         return;
+     }
+     quick_sort(0,values.length-1);
+ }
+
+ private void quick_sort(int lowerIndex, int higherIndex) {
+      
+     int i = lowerIndex;
+     int j = higherIndex;
+     int pivot = values[lowerIndex+(higherIndex-lowerIndex)/2];
+     while (i <= j) {
+         while (values[i] < pivot) {
+             i++;
+         }
+         while (values[j] > pivot) {
+             j--;
+         }
+         if (i <= j) {
+             swap(i, j);
+             //move index to next position on both sides
+             i++;
+             j--;
+         }
+     }
+     // call quickSort() method recursively
+     if (lowerIndex < j)
+         quick_sort(lowerIndex, j);
+     if (i < higherIndex)
+         quick_sort(i, higherIndex);
+ }
+ 
+ 
+ public  void selectionSort()
+ {
+     
+	   for (int i = 0; i < values.length - 1; i++) {
+           // Find the index of the minimum value
+           int minPos = i;
+           for (int j = i + 1; j < values.length; j++) {
+               if (values[j] < values[minPos]) {
+                   minPos = j;
+               }
+           }
+           swap(minPos,i);
+       }
+
+ }
  
  
  

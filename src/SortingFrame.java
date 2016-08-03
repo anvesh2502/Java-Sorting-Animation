@@ -16,7 +16,7 @@ public class SortingFrame extends JFrame
 		
 		sframe.initUI();
 		sframe.setVisible(true);
-		sframe.panel.swap();
+		sframe.panel.bubbleSort();
 	}
 	
 	void initUI()
@@ -32,7 +32,7 @@ public class SortingFrame extends JFrame
 		panel=new SortingPanel(400,400);
 		setSize(400,400);
 		add(panel);
-		setTitle("Points");
+		setTitle("Sorting");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
