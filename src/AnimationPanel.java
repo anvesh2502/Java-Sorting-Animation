@@ -4,9 +4,10 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
-public class SortingPanel extends JPanel 
+public class AnimationPanel extends JPanel implements Runnable 
 {
 Integer[] values;
+Integer[] helper;
 Random random;
 int maxValue;
 public static final int LINE_WIDTH=1;
@@ -14,9 +15,10 @@ public static final int ANIMATION_DURATION=10;
 int numValues;
 int height;
 int width;
+Color color;
 
 	
-   public SortingPanel(int width,int height) 
+   public AnimationPanel(int width,int height,Color color) 
  {
 	// TODO Auto-generated constructor stub
 	   this.width=width;
@@ -26,12 +28,14 @@ int width;
 	  System.out.println("numvalues="+numValues);
 	  values=new Integer[numValues];
 	  random=new Random();
-	  populatevaluesay();
+	  this.color=color;
+	  setSize(width, height);
+	  populatevalues();
 	  
 	  
  }
    
- public void populatevaluesay()
+ public void populatevalues()
  {
 	for(int i=0;i<values.length;i++)
 	{
@@ -61,7 +65,7 @@ int width;
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		System.out.println("paint called");
-		g.setColor(Color.BLUE);
+		g.setColor(color);
 		int x1=0,x2=0;
 		int y1=0,y2=0;
 		for(Integer i : values)
@@ -144,8 +148,16 @@ int width;
        }
 
  }
+
+@Override
+public void run() 
+{
+quickSort();	
+	
+}
  
  
+
  
  
 

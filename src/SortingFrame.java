@@ -1,14 +1,20 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 public class SortingFrame extends JFrame
 {
 	
-	SortingPanel panel;
+	SortPanel leftPanel;
+	SortPanel rightPanel;
+
 	
 	public static void main(String[] args)
 	{
@@ -16,7 +22,6 @@ public class SortingFrame extends JFrame
 		
 		sframe.initUI();
 		sframe.setVisible(true);
-		sframe.panel.bubbleSort();
 	}
 	
 	void initUI()
@@ -27,11 +32,19 @@ public class SortingFrame extends JFrame
 		int height = screenSize.height * 2 / 3;
 		int width = screenSize.width * 2 / 3;
 		
+		setLayout(new GridLayout(1,2));
 		
+		leftPanel=new SortPanel(Color.BLUE);
+		rightPanel=new SortPanel(Color.GREEN);
+		
+		leftPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		rightPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		
+		setSize(600,600);
+		
+		add(leftPanel);
+		add(rightPanel);
 
-		panel=new SortingPanel(400,400);
-		setSize(400,400);
-		add(panel);
 		setTitle("Sorting");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
