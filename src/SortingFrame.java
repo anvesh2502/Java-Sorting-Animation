@@ -45,7 +45,7 @@ public class SortingFrame extends JFrame
 		add(leftPanel);
 		add(rightPanel);
 
-		setTitle("Sorting");
+		setTitle("Sorting Animation");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
